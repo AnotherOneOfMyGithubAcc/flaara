@@ -13,6 +13,7 @@ def join_now(request):
 
         if form.is_valid():
             cd = form.cleaned_data
+            print(cd)
 
             f = UserModel(
                 firstname=cd['firstname'],
