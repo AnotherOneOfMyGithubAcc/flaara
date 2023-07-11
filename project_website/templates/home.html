@@ -5930,8 +5930,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         onload="this.onload=null;this.rel='stylesheet';" />
 </head>
 
-<body
-    class="home page-template-default page page-id-49 et_pb_button_helper_class et_fixed_nav et_show_nav et_hide_fixed_logo et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db">
+<body class="home page-template-default page page-id-49 et_pb_button_helper_class et_fixed_nav et_show_nav et_hide_fixed_logo et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db">
+
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
         style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
         <defs>
@@ -6397,7 +6397,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
                                             <div
                                                 class="et_pb_module et_pb_text et_pb_text_7  et_pb_text_align_left et_pb_bg_layout_light">
                                                 <div class="et_pb_text_inner">
-                                                    <p style="text-align: center;">Member Center</p>
+
+
+                                                    <p style="text-align: center;">
+                                                        <a href="../static/placeholder.png" style="font-size: 100px !important;" class="hide" id="download-link" download>Download File</a>
+                                                    </p>
+
+                                                    
                                                 </div>
                                             </div>
                                             <div
@@ -6575,7 +6581,38 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     <script type='text/javascript'
         src='https://sitegarage.net/faara/wp-content/themes/Divi/core/admin/js/common.js?ver=4.21.0'
         id='et-core-common-js'></script>
+    
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
 
+        function getCookie(cname) {
+            c = decodeURIComponent(document.cookie).split(";")
+            for (i = 0; i < c.length; i++) {
+                if (c[i].split("=")[0].includes(cname)) {
+                    return c[i].split("=")[1]
+                    break
+                }
+            }
+        }
+
+        q = new URLSearchParams(window.location.search)
+        
+        if (q.get("login") == "true") {
+            setCookie("login", "true", 400)
+        }
+
+        if (getCookie("login") == "true") {
+            console.log("COOKIE IS THERE")
+            document.querySelector("#download-link").classList.remove("hide")
+        }
+
+    </script>
+        
     <script>
         btn = document.querySelector("#contact > a")
         btn.addEventListener("click", () => {

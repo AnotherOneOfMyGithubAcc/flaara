@@ -26,7 +26,7 @@ def join_now(request):
 
             f.save()
 
-            return redirect("/home")
+            return redirect("/home?login=true")
         
     else:
         form = UserForm()
